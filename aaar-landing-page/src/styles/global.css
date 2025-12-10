@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/**
+ * スクロールテリング用のアニメーション定義
+ *
+ * Why: CSS Animationを使用（transitionではなく）
+ * - transitionはプロパティの変化に反応するため、同じ状態への再適用では動かない
+ * - animationはkeyを変えることで何度でも再生できる
+ * - Reactのkey属性と組み合わせることで、確実にアニメーションを再生
+ */
+
+/**
+ * 前進時のアニメーション（下から上へフェードイン）
+ *
+ * Why: 50pxのスライド距離
+ * - 100pxだと動きが大きすぎて目が疲れる
+ * - 30px以下だと変化が分かりにくい
+ * - 50pxは「動いている」と認識できる最小限の距離
+ */
+@keyframes slide-up-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * 後退時のアニメーション（上から下へフェードイン）
+ *
+ * Why: スクロール方向と逆方向にスライド
+ * - 下にスクロール = 下から上にスライド
+ * - 上にスクロール = 上から下にスライド
+ * - スクロール方向と視覚的な動きを一致させることで、自然な UX を実現
+ */
+@keyframes slide-down-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Why: 0.6秒のアニメーション時間
+ * - 0.3秒だと速すぎて内容が読み取れない
+ * - 1秒以上だと遅すぎてストレスになる
+ * - 0.6秒は「滑らか」と「素早い」のバランスが取れた時間
+ *
+ * Why: ease-outイージング
+ * - 最初は速く、最後にゆっくり減速
+ * - ユーザーの視線が新しいコンテンツを追いやすい
+ * - ease-inだと最初が遅く、読み始めるタイミングが遅れる
+ *
+ * Why: forwardsで最終状態を保持
+ * - アニメーション終了後も opacity: 1, translateY(0) を維持
+ * - これがないとアニメーション後に元の状態（opacity: 0）に戻ってしまう
+ */
+.animate-slide-up-fade-in {
+  animation: slide-up-fade-in 0.6s ease-out forwards;
+}
+
+.animate-slide-down-fade-in {
+  animation: slide-down-fade-in 0.6s ease-out forwards;
+}

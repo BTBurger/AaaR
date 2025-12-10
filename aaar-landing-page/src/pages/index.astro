@@ -1,0 +1,20 @@
+---
+// Reactコンポーネントをインポート
+import ScrollytellingDemo from '../components/ScrollytellingDemo';
+import '../styles/global.css';
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AaaR - スクロールテリングデモ</title>
+    <meta name="description" content="スクロールに連動してストーリーが展開されるデモページ" />
+  </head>
+  <body class="m-0 font-sans">
+    <main>
+      <!-- スクロールテリングコンポーネントをクライアント側で読み込み -->
+      <ScrollytellingDemo client:load />
+    </main>
+  </body>
+</html>
