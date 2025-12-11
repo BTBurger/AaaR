@@ -12,7 +12,7 @@ const ScrollytellingDemo: React.FC = () => {
         <div className="text-center">
           <h2 className="text-5xl font-bold mb-6">AaaR</h2>
           <div className = "leading-loose space-y-2">
-            <p>All as a Right. Anything as a Right.</p>
+            <p>All as a Right. Anything as a Right. AaaR as a Right</p>
             <p>全てを権利として。</p>
           </div>
         </div>
